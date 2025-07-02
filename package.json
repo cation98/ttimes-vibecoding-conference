@@ -1,0 +1,30 @@
+{
+  "name": "ttimes-vibecoding-conference",
+  "version": "1.0.0",
+  "description": "VibeCoding Todo App - Live Demo Project",
+  "scripts": {
+    "prepare": "husky install",
+    "lint:backend": "cd backend && echo '📦 Formatting Go code...' && go fmt ./... && echo '📦 Tidying Go modules...' && go mod tidy",
+    "test:backend": "cd backend && echo '🧪 Running Go tests...' && go test ./...",
+    "build:backend": "cd backend && echo '🔨 Building Go backend...' && go build .",
+    "lint:frontend": "cd frontend && echo '⚛️ Linting React code...' && npm run lint && echo '✨ Checking code format...' && npm run format:check",
+    "test:frontend": "cd frontend && echo '🧪 Running React tests...' && npm run test:ci",
+    "build:frontend": "cd frontend && echo '🔨 Building React frontend...' && npm run build",
+    "format:frontend": "cd frontend && echo '✨ Formatting React code...' && npm run format",
+    "pre-commit": "echo '🔍 Running pre-commit checks...' && npm run lint:backend && npm run test:backend && npm run build:backend && npm run format:frontend && npm run lint:frontend && npm run build:frontend && echo '✅ All checks passed!'"
+  },
+  "keywords": [
+    "todo",
+    "go",
+    "react",
+    "vite",
+    "tailwindcss",
+    "demo"
+  ],
+  "author": "VibeCoding Demo",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "prettier": "^3.6.2"
+  }
+}

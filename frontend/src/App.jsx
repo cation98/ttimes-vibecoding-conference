@@ -30,7 +30,7 @@ function App() {
   }, [])
 
   // Add new todo
-  const addTodo = async (e) => {
+  const addTodo = async e => {
     e.preventDefault()
     if (!newTodo.trim()) return
 
@@ -38,7 +38,7 @@ function App() {
       setLoading(true)
       const response = await axios.post(`${API_BASE_URL}/todos`, {
         title: newTodo,
-        description: ''
+        description: '',
       })
       setTodos([response.data, ...todos])
       setNewTodo('')
@@ -52,12 +52,14 @@ function App() {
   }
 
   // Toggle todo completion
-  const toggleTodo = async (id) => {
+  const toggleTodo = async id => {
     try {
       await axios.patch(`${API_BASE_URL}/todos/${id}`)
-      setTodos(todos.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      ))
+      setTodos(
+        todos.map(todo =>
+          todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        )
+      )
       setError('')
     } catch (err) {
       setError('Failed to update todo')
@@ -66,7 +68,7 @@ function App() {
   }
 
   // Delete todo
-  const deleteTodo = async (id) => {
+  const deleteTodo = async id => {
     try {
       await axios.delete(`${API_BASE_URL}/todos/${id}`)
       setTodos(todos.filter(todo => todo.id !== id))
@@ -97,7 +99,7 @@ function App() {
             <input
               type="text"
               value={newTodo}
-              onChange={(e) => setNewTodo(e.target.value)}
+              onChange={e => setNewTodo(e.target.value)}
               placeholder="Add a new todo..."
               className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               disabled={loading}
@@ -121,9 +123,7 @@ function App() {
 
         {/* Loading State */}
         {loading && (
-          <div className="p-6 text-center text-gray-500">
-            Loading...
-          </div>
+          <div className="p-6 text-center text-gray-500">Loading...</div>
         )}
 
         {/* Todo List */}
@@ -133,7 +133,7 @@ function App() {
               No todos yet. Add one above!
             </div>
           ) : (
-            todos.map((todo) => (
+            todos.map(todo => (
               <div
                 key={todo.id}
                 className={`p-4 flex items-center gap-3 hover:bg-gray-50 ${
@@ -169,7 +169,8 @@ function App() {
         {/* Footer */}
         {todos.length > 0 && (
           <div className="px-6 py-4 bg-gray-50 text-sm text-gray-600">
-            Total: {totalCount} todos • Completed: {completedCount} • Remaining: {totalCount - completedCount}
+            Total: {totalCount} todos • Completed: {completedCount} • Remaining:{' '}
+            {totalCount - completedCount}
           </div>
         )}
       </div>
