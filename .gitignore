@@ -10,6 +10,10 @@ build/
 *.so
 *.dylib
 
+# Go binaries
+todo-api
+backend/todo-api
+
 # Database
 *.db
 *.sqlite
